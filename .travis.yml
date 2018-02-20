@@ -1,11 +1,9 @@
----
 language: node_js
-node_js:
-  # we recommend testing addons with the same minimum supported node version as Ember CLI
-  # so that your addon works for all apps
-  - "4"
 
-sudo: false
+node_js:
+- '4'
+
+sudo: required
 dist: trusty
 
 addons:
@@ -13,22 +11,19 @@ addons:
 
 cache:
   directories:
-    - $HOME/.npm
+  - "$HOME/.npm"
 
 env:
+  - EMBER_TRY_SCENARIO=ember-lts-2.4
+  - EMBER_TRY_SCENARIO=ember-lts-2.8
+  - EMBER_TRY_SCENARIO=ember-lts-2.12
+  - EMBER_TRY_SCENARIO=ember-lts-2.16
+  - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-beta
+  - EMBER_TRY_SCENARIO=ember-canary
+  - EMBER_TRY_SCENARIO=ember-default
   global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
-  matrix:
-    # we recommend new addons test the current and previous LTS
-    # as well as latest stable release (bonus points to beta/canary)
-    - EMBER_TRY_SCENARIO=ember-lts-2.12
-    - EMBER_TRY_SCENARIO=ember-lts-2.16
-    - EMBER_TRY_SCENARIO=ember-lts-2.18
-    - EMBER_TRY_SCENARIO=ember-release
-    - EMBER_TRY_SCENARIO=ember-beta
-    - EMBER_TRY_SCENARIO=ember-canary
-    - EMBER_TRY_SCENARIO=ember-default
+  - JOBS=1
 
 matrix:
   fast_finish: true
@@ -41,7 +36,18 @@ before_install:
   - npm --version
 
 script:
-  - npm run lint:js
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
   - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+
+deploy:
+  provider: npm
+  email: bobby_mousseau@hotmail.com
+  api_key:
+    secure: W+yNfkuuZXgbqch8IdEOKSV8j7rx9vTd7Kvpna//4zOusdoQ8/GV83O2HSpgOuaHPc/BY+gggQlsUgec1SLDHj/wapAst3Dc74gl7YQskzjhA/YPUb/KMpmZH9j7lF5DaHJtRBGyAX1GNvTfJFaUZj2DUHxbpUCjhXEzuAGzAcODcHULSZtjsdzL9A0+S0IX8bDoVcOB47yhck9y0ddnSlf3ZhktriA0ZfcKlzKLQ4lAjntcHSYrELFwXy5S11KRV7QBQg250b0chFKQHD5ftV6fCkOqFQoSYhn86G8wmeSPCnrQ3apoOx3xIex6V3CcZFx7Gg7QkyjN32dNNN7608dyYTqq0JjqE2eG6oQIxgZ84d0yVMnAjaIuVH6G88gTqfgNpRA3WC/oO/w7HJbaP5T5BKzM2iQysbmzsALt0hYK+VK39H3pjQK1rmXitU+LUFAE3ky8Zz7k8HLFRGNbh+xXhTbxEvoPvvLX0wl7Wiwh+SlOTYzrqG0mL5NQp/LtCvxmdUdJQeEBLkot3ycDyoSfi1+0PycZ9d/8xgpDG8P2DMydUQN6CKLnros+ELxU57NAT/2haF5OvdYG1bZl4e93pKOGrbAnAISYPOUsw2/ZkIdqIjSq7HSc4R+Sp/YwWp7Y+gwbdUjwiyJj4yJSgP7mPm2DOZr6lqaqfIEMuqU=
+  on:
+    tags: true
+    repo: BellGasp/ember-drag-drop-multiple
+
+notifications:
+  email: false
+  slack:
+    secure: n9vc2RLhtGlFZayxeOCGlRhxwxTI7CaS2Nk7pSVp6MHQL1KgY+vNV2BV9cuoPE6FTtXx5/wXzHCMC5q6nQBoTDBFBf3hNxE/YzA7sC12O62z1l2OiWCyNUV5Kb11ofxcm4s7OJeYOrDu4bAeK0aLswh8yRriqHuGeEZa5CktFar/n6upiClehN85iWWjCNsrc76RNO8e2BPmguBZS53uhcMqKnB0rWpfgq9N2XiX1F0Wqc6cwj0b0D+TA7s2/FP7sT6c950/FvAOMw16izSz3ODmah6ec9Sk8AfinyjeSxn/KusPed9ExYTEISiNs/rmRwULZ3yh15vTLqireNJPvcG0WNb7XjJ5JAA+XjovC4eK5uJJfdmVz5UvaJU3/QR31GU9lEolncRHUsMrLwbtaHVzYQE2RWpARTcOaXo7bUNgR5pqYJKcZKU8gRUrPwkd+YyoJUL6e0dm+VdqlVYC3XKbBv9F0HvmRcmlYqAqv0bxPbwxTG4j040SMGPyy/pW5i+62y4w/6WcTwnUxV/xBygJ+MGc+I9noMm2KYSjjGM6rqND/I8UANAhX1ZnLfxDMXXF4zQWUva9+2RqutBa9v30ewHan6+2Urn+7q7hZvq44wlC3C/OlicDYq4/N3EHfCuhnQ9K8Tvt4M6yCE82WS0RO8Jp0FzyLSfDUJcByZo=

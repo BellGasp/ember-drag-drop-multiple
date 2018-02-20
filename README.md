@@ -1,48 +1,70 @@
-ember-drag-drop-multiple
-==============================================================================
+# ember-drag-drop-multiple
+[![npm version](https://badge.fury.io/js/ember-table-data.svg)](https://badge.fury.io/js/ember-table-data)
+[![Ember Observer Score](https://emberobserver.com/badges/ember-table-data.svg)](https://emberobserver.com/addons/ember-table-data)
+[![Build Status](https://travis-ci.org/BellGasp/ember-table-data.svg?branch=master)](https://travis-ci.org/BellGasp/ember-table-data)
+[![Code Climate](https://codeclimate.com/github/BellGasp/ember-table-data/badges/gpa.svg)](https://codeclimate.com/github/BellGasp/ember-table-data)
 
-[Short description of the addon.]
+## Description
+This Ember Addon exposes a component adding multiple selection functionalities to ember-drag-drop
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
+* `ember install ember-drag-drop-multiple`
+
+## Docs
+
+### Dragging multiple objects
+
+_TODO_
+
+Here's an example of how that would be accomplished:
+
+```hbs
+{{#draggable-object-target action=(action 'increaseRating')}}
+  Drag here to increase rating
+{{/draggable-object-target}}
+
+<br>
+
+{{#selectable-objects as |so|}}
+  {{#each model as |post|}}
+    {{#so.object content=post}}
+      {{post.title}} [ Rating: {{post.rating}} ]
+    {{/so.object}}
+  {{/each}}
+{{/selectable-objects}}
 ```
-ember install ember-drag-drop-multiple
+
+```javascript
+import Ember from 'ember';
+
+const { Controller, isArray } = Ember;
+
+export default Controller.extend({
+  actions: {
+    increaseRating(payload, options) {
+      if (isArray(payload)) {
+        payload.map(post => post.incrementProperty('rating', 1));
+      } else {
+        payload.incrementProperty('rating', 1);
+      }
+    }
+  }
+});
 ```
 
+### Change the drag image
 
-Usage
-------------------------------------------------------------------------------
+If you wish to change the style of your `draggable-object` when it's being dragged, simply provide an element selector using the `dragImageSelector` property and the element will be set as the drag image.
 
-[Longer description of how to use the addon in apps.]
+```hbs
+{{#draggable-object dragImageSelector=".drag-image"}}
+    Drag Me
+{{/draggable-object}}
 
+<div class="drag-image">Drag Image</div>
+```
 
-Contributing
-------------------------------------------------------------------------------
-
-### Installation
-
-* `git clone <repository-url>`
-* `cd ember-drag-drop-multiple`
-* `npm install`
-
-### Linting
-
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Running tests
-
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
-
-### Running the dummy application
-
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 License
 ------------------------------------------------------------------------------
