@@ -1,8 +1,8 @@
 # ember-drag-drop-multiple
-[![npm version](https://badge.fury.io/js/ember-table-data.svg)](https://badge.fury.io/js/ember-table-data)
-[![Ember Observer Score](https://emberobserver.com/badges/ember-table-data.svg)](https://emberobserver.com/addons/ember-table-data)
-[![Build Status](https://travis-ci.org/BellGasp/ember-table-data.svg?branch=master)](https://travis-ci.org/BellGasp/ember-table-data)
-[![Code Climate](https://codeclimate.com/github/BellGasp/ember-table-data/badges/gpa.svg)](https://codeclimate.com/github/BellGasp/ember-table-data)
+[![npm version](https://badge.fury.io/js/ember-drag-drop-multiple.svg)](https://badge.fury.io/js/ember-drag-drop-multiple)
+[![Ember Observer Score](https://emberobserver.com/badges/ember-drag-drop-multiple.svg)](https://emberobserver.com/addons/ember-drag-drop-multiple)
+[![Build Status](https://travis-ci.org/BellGasp/ember-drag-drop-multiple.svg?branch=master)](https://travis-ci.org/BellGasp/ember-drag-drop-multiple)
+[![Code Climate](https://codeclimate.com/github/BellGasp/ember-drag-drop-multiple/badges/gpa.svg)](https://codeclimate.com/github/BellGasp/ember-drag-drop-multiple)
 
 ## Description
 This Ember Addon exposes a component adding multiple selection functionalities to ember-drag-drop

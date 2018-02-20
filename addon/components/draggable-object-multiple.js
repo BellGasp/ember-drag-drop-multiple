@@ -93,9 +93,9 @@ export default DraggableObject.extend({
       dragCoordinator.dragStarted(obj, event, this);
     }
 
-    this.get('actions.dragStartAction', obj, event);
+    this.get('actions.dragStartAction')(obj, event);
     if (this.get('isSortable')) {
-      this.get('actions.draggingSortItem', obj, event);
+      this.get('actions.draggingSortItem')(obj, event);
     }
     /* FROM-end ember-drag-drop */
   },
@@ -117,7 +117,7 @@ export default DraggableObject.extend({
 
     this.dragEndHook(event);
     this.get('dragCoordinator').dragEnded();
-    this.get('actions.dragEndAction', obj, event);
+    this.get('actions.dragEndAction')(obj, event);
 
     if (this.get('dragHandle')) {
       this.set('dragReady', false);
