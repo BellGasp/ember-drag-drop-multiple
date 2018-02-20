@@ -7,6 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('drag-multiple');
+  this.route('drag-image');
 });
 
 export default Router;

@@ -1,0 +1,19 @@
+{{#draggable-object-target-multiple action=(action 'increaseRating') overrideClass="dropTarget"}}
+  Drag here to increase rating
+{{/draggable-object-target-multiple}}
+
+<br>
+
+{{#draggable-object-target-multiple action=(action 'decreaseRating') overrideClass="dropTarget"}}
+  Drag here to decrease rating
+{{/draggable-object-target-multiple}}
+
+<br>
+
+{{#selectable-objects as |so|}}
+  {{#each model as |post|}}
+    {{#so.object content=post overrideClass="dragObject u-pullLeft"}}
+      {{post.title}} [ Rating: {{post.rating}} ]
+    {{/so.object}}
+  {{/each}}
+{{/selectable-objects}}

@@ -1,0 +1,11 @@
+<h3>A simple example of changing the drag item image</h3>
+
+{{#draggable-object-target-multiple overrideClass='dropTarget'}}
+    Drag Here
+{{/draggable-object-target-multiple}}
+
+{{#draggable-object-multiple content=myObject dragImageSelector=".drag-image"  overrideClass='dragObject'}}
+    Drag Me
+{{/draggable-object-multiple}}
+
+<div class="drag-image">Drag Image</div>
