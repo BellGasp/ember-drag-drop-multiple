@@ -9,10 +9,6 @@ dist: trusty
 addons:
   chrome: stable
 
-cache:
-  directories:
-  - "$HOME/.npm"
-
 env:
   - EMBER_TRY_SCENARIO=ember-lts-2.8
   - EMBER_TRY_SCENARIO=ember-lts-2.12
