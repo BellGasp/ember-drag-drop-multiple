@@ -3,6 +3,7 @@ import { isArray } from '@ember/array';
 import { computed, set } from '@ember/object';
 import { next } from '@ember/runloop';
 import $ from 'jquery';
+import { A } from '@ember/array';
 
 export default DraggableObject.extend({
   classNameBindings: ['selected'],
@@ -15,7 +16,7 @@ export default DraggableObject.extend({
   payload: computed('selectable', 'selected', 'content', 'aggregatedContent.[]', function () {
     return this.get('selectable') && this.get('selected') ?
       this.get('aggregatedContent') :
-      this.get('content');
+      A([this.get('content')]);
   }),
 
   selected: computed('aggregatedContent.[]', 'content', function () {
