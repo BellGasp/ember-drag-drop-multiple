@@ -1,6 +1,6 @@
 {
   "name": "ember-drag-drop-multiple",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Ember addon that adds multi-selection functionalities to ember-drag-drop.",
   "keywords": [
     "ember-addon"

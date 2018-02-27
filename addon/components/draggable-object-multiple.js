@@ -13,11 +13,11 @@ export default DraggableObject.extend({
   dragImageXOffset: 0,
   dragImageYOffset: 0,
 
-  payload: computed('selectable', 'selected', 'content', 'aggregatedContent.[]', function () {
+  getPayload() {
     return this.get('selectable') && this.get('selected') ?
       this.get('aggregatedContent') :
       A([this.get('content')]);
-  }),
+  },
 
   selected: computed('aggregatedContent.[]', 'content', function () {
     if (isArray(this.get('aggregatedContent'))) {
@@ -67,6 +67,10 @@ export default DraggableObject.extend({
   dragStart is overwritten only for the payload and the drag image
   */
   dragStart(event) {
+    if (!this.get('selected')) {
+      this.click();
+    }
+
     this._setDragImage();
 
     if (!this.get('isDraggable') || !this.get('dragReady')) {
@@ -75,7 +79,7 @@ export default DraggableObject.extend({
 
     let dataTransfer = event.dataTransfer;
 
-    let obj = this.get('payload');
+    let obj = this.getPayload();
 
     let id = null;
     if (this.get('coordinator')) {
@@ -111,7 +115,7 @@ export default DraggableObject.extend({
       return;
     }
 
-    let obj = this.get('payload');
+    let obj = this.getPayload();
 
     this._setIsDraggingObject(obj, false);
 
@@ -129,7 +133,7 @@ export default DraggableObject.extend({
       selectForDrag is overwritten only to get the payload instead of content
     */
     selectForDrag() {
-      var obj = this.get('payload');
+      var obj = this.getPayload();
       var hashId = this.get('coordinator').setObject(obj, { source: this });
       this.set('coordinator.clickedId', hashId);
     }

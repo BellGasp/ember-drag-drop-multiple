@@ -48,7 +48,7 @@ export default Component.extend({
           this.get('aggregatedContent').pushObject(content);
         }
       } else {
-        this.set('aggregatedContent', A([content]));
+        this.get('aggregatedContent').clear();
       }
     }
   }
